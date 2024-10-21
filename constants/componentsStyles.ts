@@ -12,3 +12,7 @@ export const buttonStyle = {
     buttonColor: Colors.customeStyle.darkBlue,
     textColor: Colors.customeStyle.text,
 }
+
+export const cardStyle = {
+    
+}

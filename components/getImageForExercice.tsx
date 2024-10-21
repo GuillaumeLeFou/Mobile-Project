@@ -2,8 +2,8 @@
 const getImageForExercise = (exerciseName: string) => {
   const exerciseImageMap: { [key: string]: any } = {
     "pompes": [
-      require('../assets/images/Push-ups-1.png'),
-      require('../assets/images/Push-ups-2.png')
+      require('@/assets/images/exercises/push-ups-1.png'),
+      require('@/assets/images/exercises/push-ups-2.png')
     ],
     // "squats": require('../assets/images/Squats.png'),
     // Ajoutez d'autres correspondances ici

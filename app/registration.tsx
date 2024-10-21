@@ -74,7 +74,7 @@ const Registration = () => {
 
     return (
         <PaperProvider>
-        <View style={Styles.container}>
+        <View style={Styles.containerConexionInscription}>
             <Text style={Styles.title}>Inscription</Text>
             <TextInput 
                 mode="outlined"

@@ -36,7 +36,7 @@ const LoginScreen: React.FC = () => {
 
     return (
       <PaperProvider>
-        <View style={Styles.container}>
+        <View style={Styles.containerConexionInscription}>
             <Text style={Styles.title}>Connexion</Text>
             <TextInput
                 mode="outlined"

@@ -28,7 +28,7 @@ export default function Home() {
       const user = auth.currentUser;
       if (user) {
         setDailyExercises([]); // Vider dailyExercises
-
+  
         const userRef = ref(database, `users/${user.uid}`);
         onValue(userRef, async (snapshot) => {
           const data = snapshot.val();
@@ -41,28 +41,35 @@ export default function Home() {
             niveau: data?.niveau || 0,
           });
           setLoading(false);
-
+  
           if (data?.niveau !== undefined) {
-            try {
-              await getDayliExercises(user.uid, data.niveau);
-              const exercisesRef = ref(database, `users/${user.uid}/dailyExercises`);
-              onValue(exercisesRef, (exerciseSnapshot) => {
-                const exercisesData = exerciseSnapshot.val();
-                if (exercisesData && exercisesData.exercises) {
-                  setDailyExercises(exercisesData.exercises);
+            const currentDate = new Date().toISOString().split('T')[0];
+  
+            // Vérifie si les exercices du jour ont déjà été générés
+            const exercisesRef = ref(database, `users/${user.uid}/dailyExercises`);
+            onValue(exercisesRef, async (exerciseSnapshot) => {
+              const exercisesData = exerciseSnapshot.val();
+              
+              if (exercisesData && exercisesData.date === currentDate) {
+                // Les exercices du jour existent déjà
+                setDailyExercises(exercisesData.exercises);
+              } else {
+                // Les exercices du jour n'existent pas encore, générer de nouveaux exercices
+                try {
+                  await getDayliExercises(user.uid, data.niveau);
+                } catch (error) {
+                  setError("Erreur lors de la récupération des exercices quotidiens.");
+                  console.error("Erreur lors de la récupération des exercices quotidiens:", error);
                 }
-              });
-            } catch (error) {
-              setError("Erreur lors de la récupération des exercices quotidiens.");
-              console.error("Erreur lors de la récupération des exercices quotidiens:", error);
-            }
+              }
+            });
           }
         });
       } else {
         setLoading(false);
       }
     };
-
+  
     fetchUserData();
   }, []);
 
@@ -100,16 +107,17 @@ export default function Home() {
         } })}
         activeOpacity={0.4}
       >
-        <Card style={{ margin: 8 }}>
+        <Card style={[{ margin: 8 }, completed && success ? Styles.cardSuccess : completed && !success ? Styles.cardFailure : null]}>
           <Card.Content>
             <Title>{title}</Title>
             {/* <Paragraph>{description}</Paragraph> */}
-            <Paragraph>Muscle principal : {primary_muscle}</Paragraph>
-            <Paragraph>Muscles secondaires : {secondary_muscles.join(', ')}</Paragraph>
-            <Paragraph>Répétitions : {reps}</Paragraph>
-            <Paragraph>Complété : {completed ? 'Oui' : 'Non'}</Paragraph>
-            <Paragraph>Succès : {success ? 'Oui' : 'Non'}</Paragraph>
+            {/* <Paragraph>Muscle principal : {primary_muscle}</Paragraph> */}
+            {/* <Paragraph>Muscles secondaires : {secondary_muscles.join(', ')}</Paragraph> */}
+            <Paragraph>Effectuer {reps} répétitions</Paragraph>
+            {/* <Paragraph>Complété : {completed ? 'Oui' : 'Non'}</Paragraph> */}
+            {/* <Paragraph>Succès : {success ? 'Oui' : 'Non'}</Paragraph> */}
           </Card.Content>
+          <Card.Cover source={require('../assets/images/musclesWorked/pompes.png')} style={Styles.cardCover} />
         </Card>
       </TouchableOpacity>
     );
