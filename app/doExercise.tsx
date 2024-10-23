@@ -31,7 +31,7 @@ const DoExercise = () => {
         // Si vous avez besoin de mettre à jour la base de données
         const statusUpdate = { completed, success };
         updateExerciseStatus(title.toString(), statusUpdate); // Fonction fictive pour mettre à jour le statut de l'exercice
-        router.back(); // Retour à la page précédente après la soumission (facultatif)
+        // router.back(); // Retour à la page précédente après la soumission (facultatif)
     };
 
     return (
