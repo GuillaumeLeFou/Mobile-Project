@@ -46,3 +46,8 @@ export interface StatusUpdate {
     completed: boolean;
     success: boolean;
 }
+
+export interface BonusMalusUpdate {
+    bonus: boolean;
+    malus: boolean;
+}

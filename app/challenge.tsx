@@ -4,6 +4,7 @@ import { Button, Divider, PaperProvider, Paragraph } from "react-native-paper";
 import getImageForExercise from "@/services/getImageForExercice";
 import { useDynamicStyles } from '@/constants/Styles';
 import { useDynamicStylesComponents } from '@/constants/componentsStyles';
+// import Wheel from "@/components/wheel";
 
 const Exercise = () => {
     const params = useLocalSearchParams(); // Récupération des paramètres envoyés via la navigation

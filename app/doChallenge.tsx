@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, StyleSheet, ScrollView } from "react-native";
 import { router, useLocalSearchParams } from 'expo-router';
 import { Button, PaperProvider, Paragraph, TextInput, Card } from "react-native-paper";
 import getImageForExercise from "@/services/getImageForExercice";
@@ -8,6 +8,7 @@ import { updateGoalExperience } from "@/services/updateGoalExperienceAndLevel";
 import { useDynamicStyles } from '@/constants/Styles';
 import { useDynamicStylesComponents } from '@/constants/componentsStyles';
 import { updateChallengeStatus } from "@/services/updateStatusChallenge";
+
 
 const DoChallenge = () => {
     const params = useLocalSearchParams(); // Récupération des paramètres envoyés via la navigation
@@ -65,8 +66,11 @@ const DoChallenge = () => {
         await updateChallengeStatus(title ? title.toString() : '', statusUpdate);
         await updateExperience(success);
         await updateGoalExperience();
-        router.dismissAll();
-        router.replace('/home');
+        if(success === true){
+            router.replace('/wheel');
+        } else {
+            router.replace('/home');
+        }
     };
 
     // Formater le temps restant en minutes et secondes
@@ -78,7 +82,7 @@ const DoChallenge = () => {
 
     return (
         <PaperProvider>
-            <View style={[styles.container]}>
+            <ScrollView style={[styles.container]}>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.subtitle}>Tu dois exécuter {reps} répétitions</Text>
                 
@@ -115,12 +119,7 @@ const DoChallenge = () => {
                 >
                     Soumettre
                 </Button>
-                {completed && (
-                    <Text style={styles.result}>
-                        {success ? 'Exercice réussi !' : 'Essayez à nouveau.'}
-                    </Text>
-                )}
-            </View>
+            </ScrollView>
         </PaperProvider>
     );
 };
