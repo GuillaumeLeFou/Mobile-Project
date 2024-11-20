@@ -115,5 +115,12 @@ export const useDynamicStyles = () => {
     rankStyleTitle: {
       fontSize: 30,
     },
+
+    timer: {
+      fontSize: 20,
+      marginVertical: 10,
+      fontWeight: 'bold',
+      color: '#FF4500',
+  },
   });
 };

@@ -51,11 +51,8 @@ const Wheel = () => {
     const handleChallengeClick = (challenge: Challenge) => {
         const statusBonusMalus = { bonus, malus };
         updateBonusMalusChallenge(selectedPlayer!, challenge.name, statusBonusMalus);
-        Alert.alert(
-            "Détails du Challenge",
-            `Nom: ${challenge.name}\nDescription: ${challenge.description}\nReps: ${challenge.reps}`,
-            [{ text: "OK" }]
-        );
+        router.dismissAll();
+        router.push('/home');
     };
 
     // Rendu de chaque défi cliquable dans la liste

@@ -12,7 +12,7 @@ import { updateChallengeStatus } from "@/services/updateStatusChallenge";
 
 const DoChallenge = () => {
     const params = useLocalSearchParams(); // Récupération des paramètres envoyés via la navigation
-    const { title, description, reps, time } = params;
+    const { title, description, reps, time, bonus, malus } = params;
 
     const [userReps, setUserReps] = useState<string>(''); // État pour le nombre de répétitions entrées par l'utilisateur
     const [completed, setCompleted] = useState<boolean>(false); // État pour savoir si l'exercice est complété
@@ -25,12 +25,22 @@ const DoChallenge = () => {
     useEffect(() => {
         // Vérification de la validité de params.time avant de le convertir
         const timeValue = time ? parseInt(time.toString()) : 60;
-        if (isNaN(timeValue) || timeValue <= 0) {
+        let adjustedTime = timeValue;
+    
+        // Appliquer le bonus ou le malus si applicable
+        if (bonus == "1") {
+            adjustedTime += 10; // Ajouter 10 secondes pour le bonus
+        } else if (malus == "1") {
+            adjustedTime -= 10; // Retirer 10 secondes pour le malus
+        }
+    
+        // Assurer que le temps restant est au moins 1 seconde
+        if (isNaN(adjustedTime) || adjustedTime <= 0) {
             setRemainingTime(60); // Valeur par défaut de 60 secondes
         } else {
-            setRemainingTime(timeValue);
+            setRemainingTime(adjustedTime);
         }
-    }, [time]);
+    }, [time, bonus, malus]);
 
     useEffect(() => {
         if (remainingTime <= 0) {
@@ -86,8 +96,7 @@ const DoChallenge = () => {
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.subtitle}>Tu dois exécuter {reps} répétitions</Text>
                 
-                {/* Affichage du minuteur */}
-                <Text style={stylesLocal.timer}>
+                <Text style={styles.timer}>
                     Temps restant : {formatTime(remainingTime)}
                 </Text>
                 
@@ -123,15 +132,5 @@ const DoChallenge = () => {
         </PaperProvider>
     );
 };
-
-const stylesLocal = StyleSheet.create({
-    timer: {
-        fontSize: 20,
-        marginVertical: 10,
-        fontWeight: 'bold',
-        color: '#FF4500',
-    },
-    // Autres styles peuvent être ajoutés ici si nécessaire
-});
 
 export default DoChallenge;

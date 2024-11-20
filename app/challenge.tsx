@@ -19,11 +19,11 @@ const Exercise = () => {
 
     if (bonus === "1"){
         newBonus = "true";
-        detailExercise = "Tu as un bonus pour ce challenge";
+        detailExercise = "Tu as un bonus pour ce challenge de 10 secondes";
     }
     if (malus === "1"){
         newMalus = "true";
-        detailExercise = "Tu as un malus pour ce challenge";
+        detailExercise = "Tu as un malus pour ce challenge de 10 secondes";
     }
     return(
         <PaperProvider>
@@ -55,6 +55,8 @@ const Exercise = () => {
                             description, 
                             reps,
                             time,
+                            bonus,
+                            malus,
                             } })}>
                         Commencer l'exercice
                     </Button>
