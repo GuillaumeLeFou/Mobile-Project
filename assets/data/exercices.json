@@ -1,0 +1,39 @@
+{
+  "exercises": [
+    {
+      "name": "Pompes",
+      "description": "Commencez en position de planche avec les mains alignées sous les épaules. Abaissez votre corps jusqu'à ce que votre poitrine touche presque le sol, puis poussez vers le haut pour revenir à la position de départ.",
+      "partie_du_corps":"Haut du corps",
+      "primary_muscle": "Pectoraux",
+      "secondary_muscles": ["Triceps", "Épaules", "Abdominaux"]
+    },
+    {
+      "name": "Squat",
+      "description": "Tenez-vous debout, les pieds écartés à la largeur des épaules. Abaissez vos hanches vers l'arrière comme si vous alliez vous asseoir sur une chaise. Descendez jusqu'à ce que vos cuisses soient parallèles au sol, puis revenez à la position debout.",
+      "partie_du_corps":"Bas du corps",
+      "primary_muscle": "Quadriceps",
+      "secondary_muscles": ["Fessiers", "Ischio-jambiers", "Abdominaux"]
+    },
+    {
+      "name": "Fente-avant",
+      "description": "Faites un grand pas en avant avec une jambe et abaissez vos hanches jusqu'à ce que les deux genoux soient à 90 degrés. Revenez à la position de départ et répétez avec l'autre jambe.",
+      "primary_muscle": "Quadriceps",
+      "partie_du_corps":"Bas du corps",
+      "secondary_muscles": ["Fessiers", "Ischio-jambiers", "Mollets"]
+    },
+    {
+      "name": "Abdos",
+      "description": "Allongez-vous sur le dos, les genoux pliés et les pieds à plat sur le sol. Placez vos mains derrière votre tête et soulevez le haut de votre corps en contractant vos abdominaux, puis revenez lentement à la position de départ.",
+      "partie_du_corps":"Ventre",
+      "primary_muscle": "Abdominaux",
+      "secondary_muscles": ["Obliques", "Hanches"]
+    },
+    {
+      "name": "Dips",
+      "description": "Placez vos mains sur le bord d'une chaise ou d'une table basse, les jambes tendues devant vous. Abaissez lentement votre corps en pliant les coudes, puis poussez pour revenir à la position de départ.",
+      "primary_muscle": "Triceps",
+      "partie_du_corps":"Haut du corps",
+      "secondary_muscles": ["Épaules", "Pectoraux"]
+    }
+  ]
+}
